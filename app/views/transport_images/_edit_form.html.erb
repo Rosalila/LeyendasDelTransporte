@@ -1,0 +1,61 @@
+<%= form_for(@transport_image) do |f| %>
+  <% if @transport_image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transport_image.errors.count, "error") %> prohibited this transport_image from being saved:</h2>
+
+      <ul>
+      <% @transport_image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :path %><br>
+    <%= f.file_field :path %>
+  </div>
+
+  <input id="x" type="text" name="x"/>
+  <input id="y" type="text" name="y"/>
+
+  <img id="base_image" src="<%= @transport_image.path %>"/>
+  <img id="sticker" style="cursor: pointer;position: absolute;top: 0px;left: 0px;transition: all 1s;" src="/sticker.png"/>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<script>
+$(document).ready(function() {
+
+  function appendImage(element, src, alt)   
+  {  
+    var image = new Image();    
+    image.src = src;    
+    image.alt = alt;
+    image.style.position = "absolute";
+    image.style.right=0;    
+    element.appendChild(image);    
+    return false;    
+  }
+
+  $('img').click(function(e) {
+
+    appendImage(document.getElementById("base_image"),'/b.png', 'Picture of foo');
+    var offset = $(this).offset();
+
+    var elem_x = document.getElementById("x");
+    elem_x.value = e.pageX - offset.left;
+
+    var elem_y = document.getElementById("y");
+    elem_y.value = e.pageY - offset.top;
+
+    var elem_w = document.getElementById("sticker");
+    elem_w.style.left = e.pageX + "px";
+    elem_w.style.top = e.pageY + "px";
+  });
+});
+</script>

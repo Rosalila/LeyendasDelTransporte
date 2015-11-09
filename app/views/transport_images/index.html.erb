@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Transport Images</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Path</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transport_images.each do |transport_image| %>
+      <tr>
+        <td><%= transport_image.user.email %></td>
+        <% if transport_image.stickered_path %>
+          <td><img src="<%= transport_image.stickered_path %>"/></td>
+        <%else%>
+          <td><img src="<%= transport_image.path %>"/></td>
+        <%end%>
+        <td><%= link_to 'Show', transport_image %></td>
+        <td><%= link_to 'Edit', edit_transport_image_path(transport_image) %></td>
+        <td><%= link_to 'Destroy', transport_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Transport image', new_transport_image_path %>
