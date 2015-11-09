@@ -34,7 +34,7 @@ class TransportImagesController < ApplicationController
     @transport_image.user_id = current_user.id
     respond_to do |format|
       if @transport_image.save
-        format.html { redirect_to @transport_image, notice: 'Transport image was successfully created.' }
+        format.html { redirect_to edit_transport_image_path(@transport_image), notice: 'Transport image was successfully created.' }
         format.json { render :edit, status: :created, location: edit_transport_image_path(@transport_image) }
       else
         format.html { render :new }

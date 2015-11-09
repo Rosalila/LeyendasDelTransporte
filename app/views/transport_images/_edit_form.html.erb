@@ -11,13 +11,8 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :path %><br>
-    <%= f.file_field :path %>
-  </div>
-
-  <input id="x" type="text" name="x"/>
-  <input id="y" type="text" name="y"/>
+  <input id="x" type="hidden" name="x"/>
+  <input id="y" type="hidden" name="y"/>
 
   <img id="base_image" src="<%= @transport_image.path %>"/>
   <img id="sticker" style="cursor: pointer;position: absolute;top: 0px;left: 0px;transition: all 1s;" src="/sticker.png"/>

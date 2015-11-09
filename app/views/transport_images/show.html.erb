@@ -2,13 +2,14 @@
 
 <p>
   <strong>User:</strong>
-  <%= @transport_image.user_id %>
+  <%= @transport_image.user.email %>
 </p>
 
-<p>
-  <strong>Path:</strong>
-  <%= @transport_image.path %>
-</p>
+<% if @transport_image.stickered_path %>
+  <td><img src="<%= @transport_image.stickered_path %>"/></td>
+<%else%>
+  <td><img src="<%= @transport_image.path %>"/></td>
+<%end%>
 
 <%= link_to 'Edit', edit_transport_image_path(@transport_image) %> |
 <%= link_to 'Back', transport_images_path %>
