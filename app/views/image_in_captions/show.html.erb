@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Transport image:</strong>
+  <%= @image_in_caption.transport_image_id %>
+</p>
+
+<p>
+  <strong>Transport caption:</strong>
+  <%= @image_in_caption.transport_caption_id %>
+</p>
+
+<%= link_to 'Edit', edit_image_in_caption_path(@image_in_caption) %> |
+<%= link_to 'Back', image_in_captions_path %>

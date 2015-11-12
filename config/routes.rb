@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  resources :image_in_captions
+  resources :transport_captions
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   resources :transport_images
   get 'home/index'
 
   root 'home#index'
+
+  get 'profile/:id' => 'home#profile'
+  get 'users' => 'home#users'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

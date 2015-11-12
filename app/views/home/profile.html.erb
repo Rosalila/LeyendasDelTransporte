@@ -1,0 +1,10 @@
+<%=@user.email%>
+
+<br>
+<% @user.transport_images.each do |transport_image| %>
+  <img src="<%= transport_image.stickered_path %>"/>
+  <h2><%if transport_image.transport_captions[0]%><h2>
+    <%= transport_image.transport_captions[0].caption %>
+  <%end%>
+  <br>
+<% end %>

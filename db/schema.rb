@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109035852) do
+ActiveRecord::Schema.define(version: 20151111173207) do
+
+  create_table "image_in_captions", force: :cascade do |t|
+    t.integer  "transport_image_id"
+    t.integer  "transport_caption_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "transport_captions", force: :cascade do |t|
+    t.string   "caption"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "transport_images", force: :cascade do |t|
     t.integer  "user_id"

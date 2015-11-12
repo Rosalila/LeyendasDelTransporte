@@ -1,0 +1,21 @@
+<%= form_for(@transport_caption) do |f| %>
+  <% if @transport_caption.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transport_caption.errors.count, "error") %> prohibited this transport_caption from being saved:</h2>
+
+      <ul>
+      <% @transport_caption.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :caption %><br>
+    <%= f.text_field :caption %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

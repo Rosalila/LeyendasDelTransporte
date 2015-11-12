@@ -14,10 +14,16 @@
 <body>
 
 <% if !current_user %>
-  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+  <%= link_to "Log in", "/users/sign_in" %> or
+  <%= link_to "Sign up", "/users/sign_up" %>
 <% else %>
   <%= link_to destroy_user_session_path, :method => :delete  do %>Sign out<%end%>
 <%end%>
+| <a href="/">Home</a>
+| <a href="/users">Users</a>
+| <a href="/transport_captions">Add images</a>
+
+<br>
 
 <%= yield %>
 

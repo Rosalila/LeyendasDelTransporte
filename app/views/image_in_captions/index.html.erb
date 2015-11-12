@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Image In Captions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Transport image</th>
+      <th>Transport caption</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @image_in_captions.each do |image_in_caption| %>
+      <tr>
+        <td><img src="<%= image_in_caption.transport_image.stickered_path %>"/></td>
+        <td><%= image_in_caption.transport_caption.caption %></td>
+        <td><%= link_to 'Show', image_in_caption %></td>
+        <td><%= link_to 'Edit', edit_image_in_caption_path(image_in_caption) %></td>
+        <td><%= link_to 'Destroy', image_in_caption, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Image in caption', new_image_in_caption_path %>

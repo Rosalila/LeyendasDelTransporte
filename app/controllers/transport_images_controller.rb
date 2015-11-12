@@ -15,6 +15,7 @@ class TransportImagesController < ApplicationController
   # GET /transport_images/new
   def new
     @transport_image = TransportImage.new
+    @transport_caption = TransportCaption.find_by_id(params[:transport_caption_id])
   end
 
   # GET /transport_images/1/edit
@@ -32,8 +33,15 @@ class TransportImagesController < ApplicationController
     @transport_image = TransportImage.new(transport_image_params)
     @transport_image.path = params[:file]
     @transport_image.user_id = current_user.id
+    @transport_caption_id = params[:transport_image][:transport_caption_id]
     respond_to do |format|
       if @transport_image.save
+        if @transport_caption_id
+          image_in_caption = ImageInCaption.new
+          image_in_caption.transport_image = @transport_image
+          image_in_caption.transport_caption_id = @transport_caption_id
+          image_in_caption.save
+        end
         format.html { redirect_to edit_transport_image_path(@transport_image), notice: 'Transport image was successfully created.' }
         format.json { render :edit, status: :created, location: edit_transport_image_path(@transport_image) }
       else
@@ -58,6 +66,11 @@ loot_image.write(out)
 @transport_image.stickered_path=@transport_image.path.to_s.to_s.sub(/\./, "-sticker.")
 @transport_image.save
 redirect_to @transport_image
+
+loot_image.resize!(800, 800)
+loot_image.write(Rails.public_path+@transport_image.path_url(:thumb)[1..-1])
+loot_image.resize!(250, 250)
+loot_image.write(Rails.public_path+@transport_image.path_url(:med_thumb)[1..-1])
 
 #    respond_to do |format|
 #      if @transport_image.update(transport_image_params)
