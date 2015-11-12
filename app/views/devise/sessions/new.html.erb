@@ -1,0 +1,38 @@
+
+<%= render "devise/shared/links" %>
+
+			<div class="contact">
+				<div class="top-contact">
+				<h3>Iniciá Sesión</h3>
+				<div class="grid-contact">
+
+
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+	<div class="your-top">
+		<i class="email"> </i>
+    <%= f.email_field :email, autofocus: true, type: "text", value: "E-mail", onfocus: "this.value='';", onblur: "if (this.value == '') {this.value = 'E-mail';}" %>
+    <div class="clear"> </div>
+  </div>
+
+  <div class="your-top">
+		<i class="question"> </i>
+    <%= f.password_field :password, autocomplete: "off", type: "password", value: "aaaaaaaa", onfocus: "this.value='';", onblur: "if (this.value == '') {this.value = 'aaaaaaaa';}" %>
+    <div class="clear"> </div>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end -%>
+
+  <div class="grid-contact-in">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
+
+					
+				</div>
+			</div>

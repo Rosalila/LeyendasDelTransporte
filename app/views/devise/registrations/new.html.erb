@@ -1,0 +1,38 @@
+			<div class="contact">
+				<div class="top-contact">
+				<h3>Registrate</h3>
+				<div class="grid-contact">
+
+
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+	<div class="your-top">
+		<i class="email"> </i>
+    <%= f.email_field :email, autofocus: true, type: "text", value: "E-mail", onfocus: "this.value='';", onblur: "if (this.value == '') {this.value = 'E-mail';}" %>
+    <div class="clear"> </div>
+  </div>
+
+	<div class="your-top">
+		<i class="email"> </i>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off", type: "password", value: "", onfocus: "this.value='';", onblur: "if (this.value == '') {this.value = '';}" %>
+    <div class="clear"> </div>
+  </div>
+
+	<div class="your-top">
+		<i class="email"> </i>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", type: "password", value: "", onfocus: "this.value='';", onblur: "if (this.value == '') {this.value = '';}" %>
+    <div class="clear"> </div>
+  </div>
+
+  <div class="grid-contact-in">
+    <%= f.submit "Registrate" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

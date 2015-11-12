@@ -10,22 +10,87 @@
   <script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
   <script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>
 
+<!-- jQuery-->
+<script src="/js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Kappe Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--fonts-->
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>
+<!--//fonts-->
+
 </head>
 <body>
 
-<% if !current_user %>
-  <%= link_to "Log in", "/users/sign_in" %> or
-  <%= link_to "Sign up", "/users/sign_up" %>
-<% else %>
-  <%= link_to destroy_user_session_path, :method => :delete  do %>Sign out<%end%>
-<%end%>
-| <a href="/">Home</a>
-| <a href="/users">Users</a>
-| <a href="/transport_captions">Add images</a>
+	<div class="header">
+		<div class="header-left">
+			<div class="logo">
+				<a href="index.html"><img src="/images/logo.png" alt=""></a>
+			</div>
+			<div class="top-nav">
+				<ul >
+					<li ><a href="/" >INICIO</a></li>
+          <li><a href="/users" class="black" >USUARIOS</a></li>
+          <% if !current_user %>
+					  <li><a href="/users/sign_in" class="black2" >INICIÁ SESIÓN</a></li>
+  					<li><a href="/users/sign_up" class="black3" >REGISTRATE</a></li>
+          <% else %>
+            <li><a href="/transport_captions" class="black1">AGREGÁ UNA FOTO</a></li>
+					  <li><a data-method="delete" href="/users/sign_out" class="black4" >CERRÁ SESIÓN</a></li>
+          <%end%>
+				</ul>
+			</div>
+			<ul class="social-in">
+				<li><a href="https://www.facebook.com/groups/665777643506594"><i> </i></a></li>
+			</ul>
+			<p class="footer-class"> Template by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+		</div>
+		<!---->
+		<div class="header-top">
+			<div class="logo-in">
+				<a href="index.html"><img src="images/logo.png" alt=""></a>
+			</div>
+			<div class="top-nav-in">
+			<span class="menu"><img src="images/menu.png" alt=""> </span>
+				<ul >
+					<li ><a href="/" >INICIO</a></li>
+          <li><a href="/users" class="black" > USUARIOS</a></li>
+          <% if !current_user %>
+					  <li><a href="/users/sign_in" class="black2" > INICIAR SESION</a></li>
+  					<li><a href="/users/sign_up" class="black3" > REGISTRARSE</a></li>
+          <% else %>
+            <li><a href="/transport_captions" class="black1"> AGREGAR FOTO</a></li>
+					  <li><a data-method="delete" href="/users/sign_out" class="black4" > CERRAR SESION</a></li>
+          <%end%>
+				</ul>
+				<script>
+					$("span.menu").click(function(){
+						$(".top-nav-in ul").slideToggle(500, function(){
+						});
+					});
+			</script>
+
+			</div>
+			<div class="clear"> </div>
+		</div>
+			<!---->
+		<div class="content">
 
 <br>
 
 <%= yield %>
+
+		</div>
+		<div class="clear"> </div>
+				<p class="footer-class-in">Copyright © 2015 Kappe Template by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+
+	</div>
 
 </body>
 </html>
