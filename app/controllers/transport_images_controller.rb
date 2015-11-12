@@ -58,7 +58,7 @@ class TransportImagesController < ApplicationController
 
 photo_path = Rails.public_path+@transport_image.path.to_s[1..-1]
 loot_image = Magick::Image::read(photo_path)[0]
-sticker_image = Magick::Image::read(Rails.public_path+"sticker.png")[0]
+sticker_image = Magick::Image::read(Rails.public_path+(params[:sticker_image][1..-1]))[0]
 loot_image = loot_image.composite(sticker_image, params[:x].to_i, params[:y].to_i, Magick::AtopCompositeOp)
 out = photo_path.sub(/\./, "-sticker.")
 loot_image.format = "PNG"
