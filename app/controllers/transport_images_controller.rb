@@ -54,33 +54,21 @@ class TransportImagesController < ApplicationController
   # PATCH/PUT /transport_images/1
   # PATCH/PUT /transport_images/1.json
   def update
+    photo_path = Rails.public_path+@transport_image.path.to_s[1..-1]
+    loot_image = Magick::Image::read(photo_path)[0]
+    sticker_image = Magick::Image::read(Rails.public_path+(params[:sticker_image][1..-1]))[0]
+    loot_image = loot_image.composite(sticker_image, params[:x].to_i, params[:y].to_i, Magick::AtopCompositeOp)
+    out = photo_path.sub(/\./, "-sticker.")
+    loot_image.format = "PNG"
+    loot_image.write(out)
+    @transport_image.stickered_path=@transport_image.path.to_s.to_s.sub(/\./, "-sticker.")
+    @transport_image.save
+    redirect_to @transport_image
 
-
-photo_path = Rails.public_path+@transport_image.path.to_s[1..-1]
-loot_image = Magick::Image::read(photo_path)[0]
-sticker_image = Magick::Image::read(Rails.public_path+(params[:sticker_image][1..-1]))[0]
-loot_image = loot_image.composite(sticker_image, params[:x].to_i, params[:y].to_i, Magick::AtopCompositeOp)
-out = photo_path.sub(/\./, "-sticker.")
-loot_image.format = "PNG"
-loot_image.write(out)
-@transport_image.stickered_path=@transport_image.path.to_s.to_s.sub(/\./, "-sticker.")
-@transport_image.save
-redirect_to @transport_image
-
-loot_image.resize!(800, 800)
-loot_image.write(Rails.public_path+@transport_image.path_url(:thumb)[1..-1])
-loot_image.resize!(250, 250)
-loot_image.write(Rails.public_path+@transport_image.path_url(:med_thumb)[1..-1])
-
-#    respond_to do |format|
-#      if @transport_image.update(transport_image_params)
-#        format.html { redirect_to @transport_image, notice: 'Transport image was successfully updated.' }
-#        format.json { render :show, status: :ok, location: @transport_image }
-#      else
-#        format.html { render :edit }
-#        format.json { render json: @transport_image.errors, status: :unprocessable_entity }
-#      end
-#    end
+    loot_image.resize!(800, 800)
+    loot_image.write(Rails.public_path+@transport_image.path_url(:thumb)[1..-1])
+    loot_image.resize!(250, 250)
+    loot_image.write(Rails.public_path+@transport_image.path_url(:med_thumb)[1..-1])
   end
 
   # DELETE /transport_images/1
