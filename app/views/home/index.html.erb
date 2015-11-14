@@ -1,11 +1,13 @@
-<br>
-<%TransportCaption.all.each do |transport_caption|%>
-  <h2><%=transport_caption.caption%></h2>
-  <a href="/transport_images/new?transport_caption_id=<%=transport_caption.id%>">Agregar imagen</a>
-  <%transport_caption.transport_images.each do |transport_image|%>
-    <br>
-    <img src="<%= transport_image.stickered_path %>"/>
-    <br>
-    Por: <a href="/profile/<%=transport_image.user.id%>"><%=transport_image.user.email%></a>
+<div class="blog">
+  <%TransportCaption.all.each do |transport_caption|%>
+    <%transport_caption.transport_images.each do |transport_image|%>
+      <div class="blog-top">
+        <div class="col-in">
+          <p>"<%=transport_caption.caption%>"</p>
+          <img src="<%= transport_image.stickered_path %>"/>
+          Por: <a href="/profile/<%=transport_image.user.id%>"><%=transport_image.user.email%></a>
+        </div>
+      </div>
+    <%end%>
   <%end%>
-<%end%>
+</div>

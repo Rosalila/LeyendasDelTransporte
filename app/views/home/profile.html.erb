@@ -1,10 +1,22 @@
-<%=@user.email%>
-
-<br>
 <% @user.transport_images.each do |transport_image| %>
-  <img src="<%= transport_image.stickered_path %>"/>
-  <h2><%if transport_image.transport_captions[0]%><h2>
-    <%= transport_image.transport_captions[0].caption %>
-  <%end%>
-  <br>
+  <div class="content-grid">
+    <a href="/transport_images/<%=transport_image.id%>" class="b-link-stripe b-animate-go  thickbox">
+      <%if transport_image.stickered_path %>
+        <img src="<%= transport_image.stickered_path %>"/>
+      <%end%>
+      <div style="height: 100%" class="b-wrapper">
+        <h2 style="height: 100%" class="b-animate b-from-left    b-delay03 ">
+          <span>
+            <%if transport_image.transport_captions[0]%>
+              <%= transport_image.transport_captions[0].caption %>
+            <%else%>
+              Sin nombre
+            <%end%>
+          </span>
+          <p>development, mobile</p>
+          <i> </i>
+        </h2>
+      </div>
+    </a>
+  </div>
 <% end %>

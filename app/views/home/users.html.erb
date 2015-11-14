@@ -1,4 +1,11 @@
+			<div class="blog">
+				<div class="blog-top">
+
 <%@users.each do |user|%>
-  <a href="/profile/<%=user.id%>"><%=user.email%></a>
-  <br>
+  <div class="col-in">
+    <a href="/profile/<%=user.id%>"><%=user.email%></a>				
+  </div>
 <%end%>
+
+			</div>
+	</div>
